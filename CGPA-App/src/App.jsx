@@ -1,9 +1,10 @@
 import React from "react";
+import Header from "./componant/Header"
 
 function App(){
   return(
     <div>
-      <h1>CGPA calculator</h1>
+      <Header />
     </div>
   )
 }
