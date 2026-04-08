@@ -1,6 +1,6 @@
 import React from "react";
 function Content() {
-  return <div>content</div>;
+  return <div className="content">content</div>;
 }
 
 export default Content;
