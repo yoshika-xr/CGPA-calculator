@@ -4,10 +4,10 @@ function Calculation() {
   return (
     <>
       <div className="calcu-sec">
-        <input type="text" placeholder="Enter subject name" />
-        <input type="text" placeholder="Enter subject code" />
-        <input type="text" placeholder="Enter grade" />
-        <input type="number" placeholder="Enter credits" />
+        <input className="input-form" type="text" placeholder="Enter subject name" />
+        <input className="input-form" type="text" placeholder="Enter subject code" />
+        <input className="input-form" type="text" placeholder="Enter grade" />
+        <input className="input-form" type="number" placeholder="Enter credits" />
       </div>
     </>
   );
