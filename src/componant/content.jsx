@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Calculation from "./Calculation";
 
 function Content() {
-  return <div className="content">content
-  <Calculation />
-   <i class="bi bi-plus-circle"></i>
+  const [forms, setForms] = useState([0]);
 
-  </div>;
+  const addForm = () => {
+    console.log("clicked");
+    setForms([...forms, forms.length]);
+  };
+  const removeForm = (index) => {
+    const updated = forms.filter((_, i) => i !== index);
+    setForms(updated);
+  };
+
+  return (
+    <div>
+      {forms.map((_, index) => (
+        <Calculation key={index} onRemove={() => removeForm(index)} />
+      ))}
+
+      <i className="bi bi-plus-circle" onClick={addForm}></i>
+    </div>
+  );
 }
 
 export default Content;

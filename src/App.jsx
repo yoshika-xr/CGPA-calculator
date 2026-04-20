@@ -21,7 +21,7 @@ function App() {
         <Sidebar />
       </div>
       <Footer />
-      <h1>{message}</h1>
+
     </div>
   );
 }
