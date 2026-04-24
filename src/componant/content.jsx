@@ -19,7 +19,8 @@ function Content() {
         <Calculation key={index} onRemove={() => removeForm(index)} />
       ))}
 
-      <i className="bi bi-plus-circle" onClick={addForm}></i>
+      <i className="bi bi-plus-circle" onClick={addForm}>Add</i>
+      <button>Calculate</button>
     </div>
   );
 }

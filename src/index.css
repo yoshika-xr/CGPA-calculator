@@ -74,7 +74,7 @@ body {
     flex-direction: column;
   }
 }
-.calcu-sec {
+/* .calcu-sec {
   width: max-content;
   background-color: white;
   border: none 1px black;
@@ -85,7 +85,7 @@ body {
   -moz-border-radius:10px;
   -ms-border-radius:10px;
   -o-border-radius:10px;
-}
+} */
 .inside-calc {
   display: flex;
   gap: 10px;

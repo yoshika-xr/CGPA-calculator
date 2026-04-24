@@ -15,7 +15,6 @@ function Calculation({ onRemove }) {
           style={{ cursor: "pointer" }}
         ></i>
       </div>
-        <button>Calculate</button>
     </div>
   );
 }
