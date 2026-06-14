@@ -3,8 +3,6 @@ import Calculation from "./Calculation";
 import Popup from "./Popup";
 
 function Content() {
-
-  
   const [subjects, setSubjects] = useState([
     { name: "", code: "", grade: "", credit: "" },
   ]);
@@ -42,19 +40,20 @@ function Content() {
   };
   //handle send data
   const sendData = async () => {
+    const  gpa=calculateGPA();
     try {
       const respone = await fetch("http://localhost:5000/calculate", {
         method: "Post",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({subjects }),
+        body: JSON.stringify({ subjects ,gpa,}),
       });
       const result = await respone.json();
       console.log("server response:", result);
     } catch (error) {
       console.error(error);
-    ;}
+    }
   };
 
   // calculate GPA
@@ -76,14 +75,11 @@ function Content() {
       totalCredits === 0 ? 0 : (totalPoints / totalCredits).toFixed(2);
 
     alert("GPA: " + gpa);
+    return gpa;
   };
-
-  
 
   return (
     <>
-      
-  
       <div className="show-container">
         <div className="welcome-content">
           <h2 className="title">
@@ -121,7 +117,8 @@ function Content() {
         <button
           className="cssbuttons-io"
           onClick={() => {
-            calculateGPA();
+            const gpa = calculateGPA();
+            alert("GPA: " + gpa);
             sendData();
           }}
         >
