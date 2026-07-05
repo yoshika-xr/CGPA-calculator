@@ -90,12 +90,12 @@ body {
 }
 
 /* BOTTOM CONTENT */
-.second-buttom {
+/* .second-buttom {
   height: 10%;
   background-color: gray;
   padding: 20px;
   border-radius: 10px;
-}
+} */
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column;

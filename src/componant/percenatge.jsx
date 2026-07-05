@@ -1,12 +1,15 @@
-import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const PercentageGauge = ({ percentage }) => {
+function Percenatge({ gpa }) {
   return (
-    <div style={{ width: 220, height: 220 }}>
+    <div style={{ width: 200, height: 200 }}>
       <CircularProgressbarWithChildren
-        value={percentage}
-        maxValue={100}
+        value={gpa}
+        maxValue={10}
         strokeWidth={10}
         styles={buildStyles({
           pathColor: "#22c55e",
@@ -18,21 +21,20 @@ const PercentageGauge = ({ percentage }) => {
           <h1
             style={{
               margin: 0,
-              fontSize: "42px",
+              fontSize: "45px",
               fontWeight: "bold",
             }}
           >
-            {percentage}%
+            {gpa.toFixed(2)}
           </h1>
 
           <p
             style={{
               margin: 0,
               color: "#666",
-              fontSize: "16px",
             }}
           >
-            Percentage
+            GPA
           </p>
         </div>
       </CircularProgressbarWithChildren>
@@ -42,15 +44,13 @@ const PercentageGauge = ({ percentage }) => {
           display: "flex",
           justifyContent: "space-between",
           marginTop: "10px",
-          fontSize: "15px",
-          color: "#555",
         }}
       >
-        <span>0%</span>
-        <span>100%</span>
+        <span>0.0</span>
+        <span>10.0</span>
       </div>
     </div>
   );
-};
+}
 
-export default PercentageGauge;
+export default Percenatge;

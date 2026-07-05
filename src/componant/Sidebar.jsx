@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../assets/sideimg.jpg";
+import Percentage from "./percenatge";
 
 function Sidebar(){
     return(
@@ -8,7 +9,7 @@ function Sidebar(){
         <div className="first-top">
             <img  className="main-img" src={image} alt="sideimage"/>
         </div>
-        <div className="second-buttom">con</div>
+        <div className="second-buttom"><Percentage gpa={7.5} /></div>
         </div>
         </>
     )
