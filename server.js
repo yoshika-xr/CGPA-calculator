@@ -10,9 +10,8 @@ app.use(express.json());
 
 //get user input
 app.post("/calculate", (req, res) => {
-  const {data,gpa} =req.body;
-
-  console.log(data);
+  const {subjects,gpa} =req.body;
+  console.log("subjects:",subjects);
   console.log("GPA:",gpa);
   res.json({message:"received"});
 });
