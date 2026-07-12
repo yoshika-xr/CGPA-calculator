@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Calculation from "./Calculation";
 import Popup from "./Popup";
 
-function Content() {
+function Content({ semester, setSemester }) {
   const [subjects, setSubjects] = useState([
     { name: "", code: "", grade: "", credit: "" },
   ]);
@@ -40,16 +40,17 @@ function Content() {
   };
   //handle send data
   const sendData = async () => {
-    const  gpa=calculateGPA();
+    const gpa = calculateGPA();
     try {
       const respone = await fetch("http://localhost:5000/calculate", {
         method: "Post",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ subjects ,gpa,}),
+        body: JSON.stringify({ subjects, gpa ,semester}),
       });
       const result = await respone.json();
+      console.log("Semester in Content:", semester);
       console.log("server response:", result);
     } catch (error) {
       console.error(error);
@@ -73,8 +74,6 @@ function Content() {
 
     const gpa =
       totalCredits === 0 ? 0 : (totalPoints / totalCredits).toFixed(2);
-
-    alert("GPA: " + gpa);
     return gpa;
   };
 
@@ -90,7 +89,7 @@ function Content() {
             <br /> Calculate your CGPA in seconds.
           </p>
         </div>
-        <Popup />
+        <Popup semester={semester} setSemester={setSemester} />
         {/* {!showPopup && <h1>{semester}</h1>} */}
         <div className="calcu-sec">
           {subjects.map((sub, index) => (

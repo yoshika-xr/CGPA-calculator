@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
-function App() {
+function Popup({ semester, setSemester }) {
   const [showPopup, setShowPopup] = useState(true);
-  const [semester, setSemester] = useState("");
 
-  const handleSelect = (e) => {
+  function handleSelect(e) {
     setSemester(e.target.value);
-  };
+  }
 
   const handleSubmit = () => {
     if (semester !== "") {
       setShowPopup(false);
     }
   };
+//  eslint-disable-next-line no-unused-vars
  const sendSemester= async () => {
   if (semester !== "") {
 
@@ -28,7 +28,6 @@ function App() {
 
     const data = await response.json();
     console.log(data);
-
     setShowPopup(false);
   }
 };
@@ -66,4 +65,4 @@ function App() {
   );
 }
 
-export default App;
+export default Popup;
