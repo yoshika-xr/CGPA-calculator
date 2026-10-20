@@ -34,12 +34,10 @@ function Header() {
               />
             </svg>
           </i>
-
           <h2 className={"head-title $"}>EduCalc</h2>
         </div>
-
         <ul className="head-cont">
-          <li>Home</li>
+          <li href="/">Home</li>
           <li>Score</li>
           <li>CGPA Formula</li>
           <li>CGPA</li>

@@ -1,8 +1,10 @@
-body {
+body  {
   background-color: white;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  /* width: 100%; */
+  height: 100vh;
 }
 /* Header container */
 .header {
@@ -34,9 +36,7 @@ body {
   color: #38bdf8; /* light blue */
   transform: scale(1.1);
 }
-.title{
-  /* font-size: 20px; */
-}
+
 .highlight {
   /* font-size: larger; */
   color: rgb(61, 181, 87);
@@ -134,7 +134,98 @@ body {
 }
 
 .footer{
-  margin:0;
-  height:15vh;
+  margin: 0%;
+  height: 90px;
   background-color:whitesmoke;
+}
+/* header */
+.navbar {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    box-sizing: border-box;
+    background: white;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+}
+
+.logo span {
+    color: #6366f1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #6366f1;
+}
+
+.calculate-btn {
+    text-decoration: none;
+    background: #6366f1;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.calculate-btn:hover {
+    background: #4f46e5;
+}
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .calculate-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .navbar {
+        height: auto;
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

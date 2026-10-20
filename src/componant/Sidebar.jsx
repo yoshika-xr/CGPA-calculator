@@ -9,7 +9,7 @@ function Sidebar(){
         <div className="first-top">
             <img  className="main-img" src={image} alt="sideimage"/>
         </div>
-        <div className="second-buttom"><Percentage gpa={7.5} /></div>
+            {/* <div className="second-buttom"><Percentage gpa={7.5} /></div> */}
         </div>
         </>
     )
