@@ -2,59 +2,46 @@ import React, { useState } from "react";
 import Calculation from "./Calculation";
 import Popup from "./Popup";
 
+// create a new empty subject with a unique id
+const newSubject = () => ({
+  id: crypto.randomUUID(),
+  name: "",
+  code: "",
+  grade: "",
+  credit: "",
+});
+
 function Content({ semester, setSemester }) {
-  const [subjects, setSubjects] = useState([
-    { name: "", code: "", grade: "", credit: "" },
-  ]);
+  const [subjects, setSubjects] = useState([newSubject()]);
 
   // add form
   const addForm = () => {
-    setSubjects([...subjects, { name: "", code: "", grade: "", credit: "" }]);
-    // console.log(subjects[subjects.length - 1].name);
+    setSubjects((prev) => [...prev, newSubject()]);
   };
 
   // remove form
-  const removeForm = (index) => {
-    const updated = subjects.filter((_, i) => i !== index);
-    setSubjects(updated);
+  const removeForm = (id) => {
+    setSubjects((prev) => prev.filter((sub) => sub.id !== id));
   };
 
   // handle input change
-  const handleChange = (index, field, value) => {
-    const updated = [...subjects];
-    updated[index][field] = value;
-    setSubjects(updated);
+  const handleChange = (id, field, value) => {
+    setSubjects((prev) =>
+      prev.map((sub) => (sub.id === id ? { ...sub, [field]: value } : sub))
+    );
   };
 
-  // grade → point
+  // grade -> point
   const getGradePoint = (grade) => {
     const map = {
-      " O": 10,
+      O: 10,
       "A+": 9,
       A: 8,
       "B+": 7,
       B: 6,
       F: 0,
     };
-    return map[grade.toUpperCase()] || 0;
-  };
-  //handle send data
-  const sendData = async () => {
-    const gpa = calculateGPA();
-    try {
-      const respone = await fetch("http://localhost:5000/calculate", {
-        method: "Post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ subjects, gpa ,semester}),
-      });
-      const result = await respone.json();
-      console.log("Semester in Content:", semester);
-      console.log("server response:", result);
-    } catch (error) {
-      console.error(error);
-    }
+    return map[(grade || "").trim().toUpperCase()] ?? 0;
   };
 
   // calculate GPA
@@ -66,15 +53,38 @@ function Content({ semester, setSemester }) {
       const gp = getGradePoint(sub.grade);
       const credit = Number(sub.credit);
 
-      if (!credit) return; // skip empty
+      if (!credit) return; // skip empty or invalid credit
 
       totalPoints += gp * credit;
       totalCredits += credit;
     });
 
-    const gpa =
-      totalCredits === 0 ? 0 : (totalPoints / totalCredits).toFixed(2);
-    return gpa;
+    return totalCredits === 0 ? "0.00" : (totalPoints / totalCredits).toFixed(2);
+  };
+
+  // send data to the server
+  const sendData = async (gpa) => {
+    try {
+      const response = await fetch("http://localhost:5000/calculate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ subjects, gpa, semester }),
+      });
+      const result = await response.json();
+      console.log("Semester in Content:", semester);
+      console.log("server response:", result);
+    } catch (error) {
+      console.error("Could not reach the server:", error);
+    }
+  };
+
+  // button click
+  const handleCalculate = () => {
+    const gpa = calculateGPA();
+    alert("GPA: " + gpa);
+    sendData(gpa);
   };
 
   return (
@@ -89,22 +99,23 @@ function Content({ semester, setSemester }) {
             <br /> Calculate your CGPA in seconds.
           </p>
         </div>
+
         <Popup semester={semester} setSemester={setSemester} />
-        {/* {!showPopup && <h1>{semester}</h1>} */}
+
         <div className="calcu-sec">
-          {subjects.map((sub, index) => (
+          {subjects.map((sub) => (
             <Calculation
-              key={index}
+              key={sub.id}
               data={sub}
-              onChange={(field, value) => handleChange(index, field, value)}
-              onRemove={() => removeForm(index)}
+              onChange={(field, value) => handleChange(sub.id, field, value)}
+              onRemove={() => removeForm(sub.id)}
             />
           ))}
         </div>
 
         <i className="plusButton" onClick={addForm}>
           <svg
-            class="plusIcon"
+            className="plusIcon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 30 30"
           >
@@ -113,14 +124,8 @@ function Content({ semester, setSemester }) {
             </g>
           </svg>
         </i>
-        <button
-          className="cssbuttons-io"
-          onClick={() => {
-            const gpa = calculateGPA();
-            alert("GPA: " + gpa);
-            sendData();
-          }}
-        >
+
+        <button className="cssbuttons-io" onClick={handleCalculate}>
           <span>
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0h24v24H0z" fill="none"></path>
@@ -136,4 +141,5 @@ function Content({ semester, setSemester }) {
     </>
   );
 }
+
 export default Content;

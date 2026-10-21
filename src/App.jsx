@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./componant/Header";
-import Content from "./componant/content";
+import Content from "./componant/Content";
 import Sidebar from "./componant/Sidebar";
 import Footer from "./componant/Footer";
 

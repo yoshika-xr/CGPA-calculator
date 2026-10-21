@@ -12,9 +12,6 @@ Formula
 GPA=
 ∑Credits
 ∑(Grade Point×Credit)
-	​
-
-
 Steps
 Multiply each subject’s Grade Point × Credit
 Add all the values
@@ -32,8 +29,6 @@ GPA
 GPA=
 10
 90
-	​
-
 =9.0
 
 CGPA Calculation
@@ -45,9 +40,6 @@ Formula
 CGPA=
 Number of Semesters
 ∑Semester GPAs
-	​
-
-
 Example
 Semester	GPA
 Sem 1	8.5
@@ -58,11 +50,8 @@ CGPA
 CGPA=
 3
 8.5+9.0+8.8
-	​
-
 =8.76
     </div>
   )
 }
-
 export default Formula
