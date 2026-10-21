@@ -1,9 +1,10 @@
+import { NavLink } from "react-router-dom";
 import React from "react";
 
 function Header() {
   return (
-    <>
-      <div className="header">
+<>
+    <div className="header">
         <div className="left-side">
           <i>
             <svg width="60" height="50" viewBox="0 0 100 100">
@@ -36,16 +37,24 @@ function Header() {
           </i>
           <h2 className={"head-title $"}>EduCalc</h2>
         </div>
-        <ul className="head-cont">
-          <li href="/">Home</li>
-          <li>Score</li>
-          <li>CGPA Formula</li>
-          <li>CGPA</li>
-          <li>Sign</li>
-        </ul>
+
+    <nav className="head-cont">
+      <div className="nav-links">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/gpa">GPA Calculator</NavLink>
+        <NavLink to="/cgpa">CGPA Calculator</NavLink>
+        <NavLink to="/history">History</NavLink>
+        <NavLink to="/about">About</NavLink>
       </div>
+
+      {/* <div className="nav-buttons">
+        <NavLink to="/gpa" className="calculate-btn">
+          Calculate Now
+        </NavLink>
+      </div> */}
+    </nav>
+    </div>
     </>
   );
 }
-
 export default Header;
